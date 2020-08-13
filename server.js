@@ -6,6 +6,12 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 
+// log all requests
+app.use((req, res, next) => {
+  console.log(`${Date.now()}: ${req.method} ${req.path} - ${req.ip}`);
+  next();
+});
+
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
 const cors = require('cors');
